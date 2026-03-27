@@ -13,7 +13,7 @@ if [ "$1" == "fdroid" ]; then
   MUPDF_FOLDER=$MUPDF_FOLDER-fdroid
 fi
 
-git clone --recursive git://git.ghostscript.com/mupdf.git --branch $VERSION_TAG $MUPDF_FOLDER
+git clone --recursive https://github.com/ArtifexSoftware/mupdf.git --branch $VERSION_TAG $MUPDF_FOLDER
 
 MUPDF_ROOT=$BUILD_DIR/$MUPDF_FOLDER
 
@@ -121,7 +121,7 @@ if [ "$(uname)" == "Darwin" ]; then
   FDRIOD_NDK_VERSION=$NDK_VERSION
 fi
 
-PATH1=/Users/ivanivanenko/Library/Android/sdk/ndk
+PATH1=/Users/zcfan/Library/Android/sdk/ndk
 PATH2=/home/dev/Android/Sdk/ndk
 
 if [ ! -d "$PATH1/$NDK_VERSION" ]; then
