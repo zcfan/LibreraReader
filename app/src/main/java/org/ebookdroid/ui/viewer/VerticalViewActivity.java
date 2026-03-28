@@ -16,6 +16,7 @@ import android.os.Looper;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
+import android.graphics.Color;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -233,6 +234,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
                 bookNameTextView.setAlpha(AppSP.get().getStealthTransparency());
             }
             if (frameLayout != null) {
+                frameLayout.setBackgroundColor(Color.BLACK);
                 frameLayout.setAlpha(AppSP.get().getStealthTransparency());
             }
         } else {
