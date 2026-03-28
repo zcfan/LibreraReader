@@ -57,7 +57,6 @@ public class AppSP {
     public long rewardShowTime = 0;
 
     public static final String STEALTH_MODE = "stealthMode";
-    public static final String STEALTH_TRANSPARENCY = "stealthTransparency";
 
     public boolean isStealthMode() {
         return sp.getBoolean(STEALTH_MODE, false);
@@ -65,14 +64,6 @@ public class AppSP {
 
     public void setStealthMode(boolean value) {
         sp.edit().putBoolean(STEALTH_MODE, value).apply();
-    }
-
-    public float getStealthTransparency() {
-        return sp.getFloat(STEALTH_TRANSPARENCY, 0.5f);
-    }
-
-    public void setStealthTransparency(float value) {
-        sp.edit().putFloat(STEALTH_TRANSPARENCY, value).apply();
     }
 
     public static AppSP get() {

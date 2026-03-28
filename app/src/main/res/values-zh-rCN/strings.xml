@@ -689,5 +689,4 @@
     <string name="stealth_mode_desc">隐藏通知栏和小部件中的书籍信息</string>
     <string name="stealth_reading">正在朗读</string>
     <string name="stealth_book">书籍</string>
-    <string name="stealth_transparency">潜行透明度</string>
 </resources>

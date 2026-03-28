@@ -1839,10 +1839,6 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         titleTxt.setText(dc.getTitle());
         pannelBookTitle.setText(dc.getTitle());
         createAdapter();
-        if (AppSP.get().isStealthMode()) {
-            viewPager.setBackgroundColor(Color.BLACK);
-            viewPager.getBackground().setAlpha((int) (AppSP.get().getStealthTransparency() * 255));
-        }
 
         viewPager.addOnPageChangeListener(onViewPagerChangeListener);
         viewPager.setCurrentItem(dc.getCurentPage(), false);

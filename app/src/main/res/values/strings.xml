@@ -689,5 +689,4 @@
     <string name="stealth_mode_desc">Hide book info from notifications and widgets</string>
     <string name="stealth_reading">Reading</string>
     <string name="stealth_book">Book</string>
-    <string name="stealth_transparency">Stealth Transparency</string>
 </resources>

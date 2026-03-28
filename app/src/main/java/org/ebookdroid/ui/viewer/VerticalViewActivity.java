@@ -235,10 +235,6 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             if (bookNameTextView != null) {
                 bookNameTextView.setAlpha(0f);
             }
-            if (frameLayout != null) {
-                frameLayout.setBackgroundColor(Color.BLACK);
-                frameLayout.getBackground().setAlpha((int) (AppSP.get().getStealthTransparency() * 255));
-            }
         } else {
             if (bookNameTextView != null) {
                 bookNameTextView.setAlpha(1f);
