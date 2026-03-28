@@ -1838,15 +1838,15 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     public void loadUI() {
         titleTxt.setText(dc.getTitle());
         pannelBookTitle.setText(dc.getTitle());
-        if (AppSP.get().isStealthMode()) {
-            pannelBookTitle.setAlpha(AppSP.get().getStealthTransparency());
-        } else {
-            pannelBookTitle.setAlpha(1f);
-        }
         createAdapter();
         if (AppSP.get().isStealthMode()) {
-            viewPager.setBackgroundColor(Color.BLACK);
-            viewPager.getBackground().setAlpha((int) (AppSP.get().getStealthTransparency() * 255));
+            overlay.setBackgroundColor(Color.BLACK);
+            overlay.setAlpha(AppSP.get().getStealthTransparency());
+            overlay.setVisibility(View.VISIBLE);
+            overlay.bringToFront();
+            parentParent.invalidate();
+        } else {
+            overlay.setVisibility(View.GONE);
         }
 
         viewPager.addOnPageChangeListener(onViewPagerChangeListener);
