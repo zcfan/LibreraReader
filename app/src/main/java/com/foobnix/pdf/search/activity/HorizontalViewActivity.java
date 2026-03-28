@@ -1838,7 +1838,17 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
     public void loadUI() {
         titleTxt.setText(dc.getTitle());
         pannelBookTitle.setText(dc.getTitle());
+        if (AppSP.get().isStealthMode()) {
+            pannelBookTitle.setAlpha(0f);
+        } else {
+            pannelBookTitle.setAlpha(1f);
+        }
         createAdapter();
+        if (AppSP.get().isStealthMode()) {
+            parentParent.setAlpha(0f);
+        } else {
+            parentParent.setAlpha(1f);
+        }
 
         viewPager.addOnPageChangeListener(onViewPagerChangeListener);
         viewPager.setCurrentItem(dc.getCurentPage(), false);
