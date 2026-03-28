@@ -685,8 +685,9 @@
    <string name="msg_sync">Synchronize the [Librera] folder with other devices via Google Drive or third-party apps.</string>
    <string name="display_alert_if_cropping_is_on">Display alert if cropping is on</string>
    <string name="scan_for_new_books_at_launch">Scan for new books at launch</string>
-   <string name="stealth_mode">Stealth Mode</string>
-   <string name="stealth_mode_desc">Hide book info from notifications and widgets</string>
-   <string name="stealth_reading">Reading</string>
-   <string name="stealth_book">Book</string>
+<string name="stealth_mode">Stealth Mode</string>
+    <string name="stealth_mode_desc">Hide book info from notifications and widgets</string>
+    <string name="stealth_reading">Reading</string>
+    <string name="stealth_book">Book</string>
+    <string name="stealth_transparency">Stealth Transparency</string>
 </resources>

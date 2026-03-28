@@ -1839,13 +1839,13 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         titleTxt.setText(dc.getTitle());
         pannelBookTitle.setText(dc.getTitle());
         if (AppSP.get().isStealthMode()) {
-            pannelBookTitle.setAlpha(0f);
+            pannelBookTitle.setAlpha(AppSP.get().getStealthTransparency());
         } else {
             pannelBookTitle.setAlpha(1f);
         }
         createAdapter();
         if (AppSP.get().isStealthMode()) {
-            viewPager.setAlpha(0f);
+            viewPager.setAlpha(AppSP.get().getStealthTransparency());
         } else {
             viewPager.setAlpha(1f);
         }

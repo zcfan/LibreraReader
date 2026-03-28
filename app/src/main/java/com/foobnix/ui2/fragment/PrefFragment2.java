@@ -1713,6 +1713,23 @@ public class PrefFragment2 extends UIFragment {
             AppSP.get().setStealthMode(isChecked);
         });
 
+        SeekBar stealthTransparency = inflate.findViewById(R.id.stealthTransparency);
+        stealthTransparency.setProgress((int) (AppSP.get().getStealthTransparency() * 100));
+        stealthTransparency.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                AppSP.get().setStealthTransparency(progress / 100f);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+
         final TextView whatIsNew = inflate.findViewById(R.id.whatIsNew);
         whatIsNew.setText(
 

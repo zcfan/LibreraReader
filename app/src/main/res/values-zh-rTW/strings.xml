@@ -685,8 +685,9 @@
    <string name="msg_sync">透過Google雲端硬碟或第三方應用程式將[Librera]資料夾與其他裝置同步。</string>
    <string name="display_alert_if_cropping_is_on">如果裁切功能已開啟，則顯示警告。</string>
    <string name="scan_for_new_books_at_launch">發表會上掃描即可查看新書。</string>
-   <string name="stealth_mode">潛行模式</string>
-   <string name="stealth_mode_desc">隱藏通知欄和小部件中的書籍信息</string>
-   <string name="stealth_reading">正在朗讀</string>
-   <string name="stealth_book">書籍</string>
+<string name="stealth_mode">潛行模式</string>
+    <string name="stealth_mode_desc">隱藏通知欄和小部件中的書籍信息</string>
+    <string name="stealth_reading">正在朗讀</string>
+    <string name="stealth_book">書籍</string>
+    <string name="stealth_transparency">潛行透明度</string>
 </resources>

@@ -596,6 +596,7 @@ public class AppState {
     public boolean isShowSeriesNumberInTitle = true;
     public boolean enableImageScale = true;
     public boolean stealthMode = false;
+    public float stealthTransparency = 0.5f;
 
     public static synchronized AppState get() {
         return instance;

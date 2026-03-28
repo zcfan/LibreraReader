@@ -230,10 +230,10 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
         if (AppSP.get().isStealthMode()) {
             if (bookNameTextView != null) {
-                bookNameTextView.setAlpha(0f);
+                bookNameTextView.setAlpha(AppSP.get().getStealthTransparency());
             }
             if (frameLayout != null) {
-                frameLayout.setAlpha(0f);
+                frameLayout.setAlpha(AppSP.get().getStealthTransparency());
             }
         } else {
             if (bookNameTextView != null) {
