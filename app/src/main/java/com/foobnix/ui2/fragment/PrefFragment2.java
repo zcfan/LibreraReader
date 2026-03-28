@@ -1707,6 +1707,12 @@ public class PrefFragment2 extends UIFragment {
             }
         });
 
+        CheckBox isStealthMode = inflate.findViewById(R.id.isStealthMode);
+        isStealthMode.setChecked(AppSP.get().isStealthMode());
+        isStealthMode.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            AppSP.get().setStealthMode(isChecked);
+        });
+
         final TextView whatIsNew = inflate.findViewById(R.id.whatIsNew);
         whatIsNew.setText(
 
