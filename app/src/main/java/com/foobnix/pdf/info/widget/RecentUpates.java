@@ -92,7 +92,7 @@ public class RecentUpates {
                             if (AppSP.get().isStealthMode()) {
                                 shortLabel = StealthMode.getRecentBookShortLabel(c);
                                 longLabel = StealthMode.getRecentBookLongLabel(c);
-                                icon = Icon.createWithResource(c, R.drawable.ic_launcher);
+                                icon = Icon.createWithResource(c, R.drawable.glyphicons_422_book_library);
                             } else {
                                 shortLabel = recentLast.getTitle();
                                 longLabel = TxtUtils.getFileMetaBookName(recentLast);
