@@ -235,19 +235,13 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             if (bookNameTextView != null) {
                 bookNameTextView.setAlpha(0f);
             }
-            if (overlay != null) {
-                overlay.setBackgroundColor(Color.BLACK);
-                overlay.setAlpha(AppSP.get().getStealthTransparency());
-                overlay.setVisibility(View.VISIBLE);
-                overlay.bringToFront();
-                parentParent.invalidate();
+            if (frameLayout != null) {
+                frameLayout.setBackgroundColor(Color.BLACK);
+                frameLayout.getBackground().setAlpha((int) (AppSP.get().getStealthTransparency() * 255));
             }
         } else {
             if (bookNameTextView != null) {
                 bookNameTextView.setAlpha(1f);
-            }
-            if (overlay != null) {
-                overlay.setVisibility(View.GONE);
             }
         }
 
