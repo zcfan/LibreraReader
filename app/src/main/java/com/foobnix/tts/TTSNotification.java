@@ -171,59 +171,86 @@ public class TTSNotification {
             remoteViewsSmall.setInt(R.id.ttsPrev, "setColorFilter", color);
             remoteViewsSmall.setInt(R.id.ttsStop, "setColorFilter", color);
 
-            String fileMetaBookName = TxtUtils.getFileMetaBookName(fileMeta);
+            final String extraText;
+            if (AppSP.get().isStealthMode()) {
+                remoteViews.setTextViewText(R.id.bookInfo, StealthMode.getReadingLabel(context));
+                remoteViewsSmall.setTextViewText(R.id.bookInfo, StealthMode.getReadingLabel(context));
+                extraText = StealthMode.getReadingLabel(context);
+            } else {
+                String fileMetaBookName = TxtUtils.getFileMetaBookName(fileMeta);
 
-            String pageNumber = "(" + TxtUtils.getProgressPercent(page, maxPages) + " " + page + "/" + maxPages + ")";
+                String pageNumber = "(" + TxtUtils.getProgressPercent(page, maxPages) + " " + page + "/" + maxPages + ")";
 
-            if (page == -1 || maxPages == -1) {
-                pageNumber = "";
+                if (page == -1 || maxPages == -1) {
+                    pageNumber = "";
+                }
+
+                String textLine = pageNumber + " " + fileMetaBookName;
+
+                if (TxtUtils.isNotEmpty(BookCSS.get().mp3BookPathGet())) {
+                    textLine = "[" + ExtUtils.getFileName(BookCSS.get().mp3BookPathGet()) + "] " + textLine;
+                }
+
+                remoteViews.setTextViewText(R.id.bookInfo, textLine.replace(TxtUtils.LONG_DASH1 + " ", "\n").trim());
+                //remoteViews.setViewVisibility(R.id.bookInfo, View.VISIBLE);
+
+                remoteViewsSmall.setTextViewText(R.id.bookInfo, textLine.trim());
+                extraText = textLine;
             }
-
-            String textLine = pageNumber + " " + fileMetaBookName;
-
-            if (TxtUtils.isNotEmpty(BookCSS.get().mp3BookPathGet())) {
-                textLine = "[" + ExtUtils.getFileName(BookCSS.get().mp3BookPathGet()) + "] " + textLine;
-            }
-
-            remoteViews.setTextViewText(R.id.bookInfo, textLine.replace(TxtUtils.LONG_DASH1 + " ", "\n").trim());
-            //remoteViews.setViewVisibility(R.id.bookInfo, View.VISIBLE);
-
-            remoteViewsSmall.setTextViewText(R.id.bookInfo, textLine.trim());
             //remoteViewsSmall.setViewVisibility(R.id.bookInfo, View.VISIBLE);
-            final String extraText = textLine;
 
             //final String url = IMG.getCoverUrl(bookPath);
             //String url = IMG.toUrl(bookPath, ImageExtractor.COVER_PAGE_NO_EFFECT, IMG.getImageSize());
 
 
-            IMG.getCoverPageWithEffect(LibreraApp.context,bookPath,null).into(new CustomTarget<Bitmap>() {
-                @Override
-                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                    remoteViews.setImageViewBitmap(R.id.ttsIcon, resource);
-                    remoteViewsSmall.setImageViewBitmap(R.id.ttsIcon, resource);
+            if (AppSP.get().isStealthMode()) {
+                Bitmap placeholder = StealthMode.getPlaceholderCover(context);
+                remoteViews.setImageViewBitmap(R.id.ttsIcon, placeholder);
+                remoteViewsSmall.setImageViewBitmap(R.id.ttsIcon, placeholder);
 
-                    builder.setContentIntent(contentIntent) //
-                            .setSmallIcon(R.drawable.glyphicons_smileys_100_headphones) //
-                            .setColor(color)
-                            .setOngoing(true)//
-                            .setPriority(NotificationCompat.PRIORITY_HIGH) //
-                            .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)//
-                            .setStyle(new androidx.media.app.NotificationCompat.MediaStyle())
-                            .setSilent(true)
-                            .setCustomBigContentView(remoteViews) ///
-                            .setCustomContentView(remoteViewsSmall); ///
-                    Notification n = builder.build(); //
+                builder.setContentIntent(contentIntent) //
+                        .setSmallIcon(R.drawable.glyphicons_smileys_100_headphones) //
+                        .setColor(color)
+                        .setOngoing(true)//
+                        .setPriority(NotificationCompat.PRIORITY_HIGH) //
+                        .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)//
+                        .setStyle(new androidx.media.app.NotificationCompat.MediaStyle())
+                        .setSilent(true)
+                        .setCustomBigContentView(remoteViews) ///
+                        .setCustomContentView(remoteViewsSmall); ///
+                Notification n = builder.build(); //
 
-                    nm.notify(NOT_ID, n);
+                nm.notify(NOT_ID, n);
+            } else {
+                IMG.getCoverPageWithEffect(LibreraApp.context, bookPath, null).into(new CustomTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                        remoteViews.setImageViewBitmap(R.id.ttsIcon, resource);
+                        remoteViewsSmall.setImageViewBitmap(R.id.ttsIcon, resource);
+
+                        builder.setContentIntent(contentIntent) //
+                                .setSmallIcon(R.drawable.glyphicons_smileys_100_headphones) //
+                                .setColor(color)
+                                .setOngoing(true)//
+                                .setPriority(NotificationCompat.PRIORITY_HIGH) //
+                                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)//
+                                .setStyle(new androidx.media.app.NotificationCompat.MediaStyle())
+                                .setSilent(true)
+                                .setCustomBigContentView(remoteViews) ///
+                                .setCustomContentView(remoteViewsSmall); ///
+                        Notification n = builder.build(); //
+
+                        nm.notify(NOT_ID, n);
 
 
-                }
+                    }
 
-                @Override
-                public void onLoadCleared(@Nullable Drawable placeholder) {
+                    @Override
+                    public void onLoadCleared(@Nullable Drawable placeholder) {
 
-                }
-            });
+                    }
+                });
+            }
 
 
             Intent update = new Intent(LibreraApp.context, TTSWidget.class);
