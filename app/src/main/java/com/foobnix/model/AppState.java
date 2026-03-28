@@ -595,6 +595,7 @@ public class AppState {
     public long textReplacementHash = 0;
     public boolean isShowSeriesNumberInTitle = true;
     public boolean enableImageScale = true;
+    public boolean stealthMode = false;
 
     public static synchronized AppState get() {
         return instance;

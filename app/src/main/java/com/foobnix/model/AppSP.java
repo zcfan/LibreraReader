@@ -56,6 +56,16 @@ public class AppSP {
     public long rewardedAdLoadedTime = 0;
     public long rewardShowTime = 0;
 
+    public static final String STEALTH_MODE = "stealthMode";
+
+    public boolean isStealthMode() {
+        return sp.getBoolean(STEALTH_MODE, false);
+    }
+
+    public void setStealthMode(boolean value) {
+        sp.edit().putBoolean(STEALTH_MODE, value).apply();
+    }
+
     public static AppSP get() {
         return instance;
     }
