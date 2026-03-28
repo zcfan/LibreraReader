@@ -232,15 +232,15 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             if (bookNameTextView != null) {
                 bookNameTextView.setAlpha(0f);
             }
-            if (parentParent != null) {
-                parentParent.setAlpha(0f);
+            if (frameLayout != null) {
+                frameLayout.setAlpha(0f);
             }
         } else {
             if (bookNameTextView != null) {
                 bookNameTextView.setAlpha(1f);
             }
-            if (parentParent != null) {
-                parentParent.setAlpha(1f);
+            if (frameLayout != null) {
+                frameLayout.setAlpha(1f);
             }
         }
 

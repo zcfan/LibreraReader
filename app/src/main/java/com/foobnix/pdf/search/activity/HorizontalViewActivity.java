@@ -1845,9 +1845,9 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
         createAdapter();
         if (AppSP.get().isStealthMode()) {
-            parentParent.setAlpha(0f);
+            viewPager.setAlpha(0f);
         } else {
-            parentParent.setAlpha(1f);
+            viewPager.setAlpha(1f);
         }
 
         viewPager.addOnPageChangeListener(onViewPagerChangeListener);
