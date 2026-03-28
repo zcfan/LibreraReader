@@ -27,6 +27,7 @@ import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
 import com.foobnix.pdf.search.activity.HorizontalViewActivity;
 import com.foobnix.sys.ImageExtractor;
+import com.foobnix.tts.StealthMode;
 import com.foobnix.tts.TTSActivity;
 import com.foobnix.ui2.AppDB;
 
@@ -84,6 +85,19 @@ public class RecentUpates {
                         @Override
                         public void onResourceReady(@NonNull Bitmap image, @Nullable Transition<? super Bitmap> transition) {
 
+                            String shortLabel;
+                            String longLabel;
+                            Icon icon;
+
+                            if (AppSP.get().isStealthMode()) {
+                                shortLabel = StealthMode.getRecentBookShortLabel(c);
+                                longLabel = StealthMode.getRecentBookLongLabel(c);
+                                icon = Icon.createWithResource(c, R.drawable.ic_launcher);
+                            } else {
+                                shortLabel = recentLast.getTitle();
+                                longLabel = TxtUtils.getFileMetaBookName(recentLast);
+                                icon = Icon.createWithBitmap(image);
+                            }
 
                             Intent lastBookIntent = new Intent(c, VerticalViewActivity.class);
                             if (AppSP.get().readingMode == AppState.READING_MODE_BOOK) {
@@ -94,9 +108,9 @@ public class RecentUpates {
                             lastBookIntent.setData(Uri.fromFile(bookFile));
 
                             ShortcutInfo shortcut = new ShortcutInfo.Builder(c, "last")//
-                                    .setShortLabel(recentLast.getTitle())//
-                                    .setLongLabel(TxtUtils.getFileMetaBookName(recentLast))//
-                                    .setIcon(Icon.createWithBitmap(image))//
+                                    .setShortLabel(shortLabel)//
+                                    .setLongLabel(longLabel)//
+                                    .setIcon(icon)//
                                     .setIntent(lastBookIntent)//
                                     .build();//
 
@@ -107,7 +121,7 @@ public class RecentUpates {
                             ShortcutInfo tts = new ShortcutInfo.Builder(c, "tts")//
                                     .setShortLabel(c.getString(R.string.reading_out_loud))//
                                     .setLongLabel(c.getString(R.string.reading_out_loud))//
-                                    .setIcon(Icon.createWithBitmap(image))//
+                                    .setIcon(icon)//
                                     .setIntent(tTSIntent)//
                                     .build();//
 
