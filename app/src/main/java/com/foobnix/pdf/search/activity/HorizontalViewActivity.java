@@ -1845,10 +1845,11 @@ public class HorizontalViewActivity extends AdsFragmentActivity {
         }
         createAdapter();
         if (AppSP.get().isStealthMode()) {
-            viewPager.setBackgroundColor(Color.BLACK);
-            viewPager.setAlpha(AppSP.get().getStealthTransparency());
+            overlay.setBackgroundColor(Color.BLACK);
+            overlay.setAlpha(AppSP.get().getStealthTransparency());
+            overlay.setVisibility(View.VISIBLE);
         } else {
-            viewPager.setAlpha(1f);
+            overlay.setVisibility(View.GONE);
         }
 
         viewPager.addOnPageChangeListener(onViewPagerChangeListener);

@@ -59,6 +59,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     private FrameLayout frameLayout;
     private View parentParent;
     private TextView bookNameTextView;
+    private FrameLayout overlay;
 
     /**
      * Instantiates a new base viewer activity.
@@ -162,6 +163,7 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
 
         getController().createWrapper(this);
         frameLayout = (FrameLayout) findViewById(R.id.documentView);
+        overlay = findViewById(R.id.overlay);
 
         view = new PdfSurfaceView(getController());
 
@@ -233,16 +235,17 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             if (bookNameTextView != null) {
                 bookNameTextView.setAlpha(AppSP.get().getStealthTransparency());
             }
-            if (frameLayout != null) {
-                frameLayout.setBackgroundColor(Color.BLACK);
-                frameLayout.setAlpha(AppSP.get().getStealthTransparency());
+            if (overlay != null) {
+                overlay.setBackgroundColor(Color.BLACK);
+                overlay.setAlpha(AppSP.get().getStealthTransparency());
+                overlay.setVisibility(View.VISIBLE);
             }
         } else {
             if (bookNameTextView != null) {
                 bookNameTextView.setAlpha(1f);
             }
-            if (frameLayout != null) {
-                frameLayout.setAlpha(1f);
+            if (overlay != null) {
+                overlay.setVisibility(View.GONE);
             }
         }
 
