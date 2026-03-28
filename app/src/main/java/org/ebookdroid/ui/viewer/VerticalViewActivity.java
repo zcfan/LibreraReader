@@ -18,6 +18,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.foobnix.android.utils.Dips;
 import com.foobnix.android.utils.Intents;
@@ -54,6 +55,8 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
     IView view;
 
     private FrameLayout frameLayout;
+    private View parentParent;
+    private TextView bookNameTextView;
 
     /**
      * Instantiates a new base viewer activity.
@@ -151,6 +154,10 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
             return;
         }
 
+        parentParent = findViewById(R.id.parentParent);
+        View documentTitleBar = findViewById(R.id.document_title_bar);
+        bookNameTextView = documentTitleBar != null ? (TextView) documentTitleBar.findViewById(R.id.bookName) : null;
+
         getController().createWrapper(this);
         frameLayout = (FrameLayout) findViewById(R.id.documentView);
 
@@ -218,6 +225,22 @@ public class VerticalViewActivity extends AbstractActionActivity<VerticalViewAct
                     }
                 }
             }, 50);
+        }
+
+        if (AppSP.get().isStealthMode()) {
+            if (bookNameTextView != null) {
+                bookNameTextView.setAlpha(0f);
+            }
+            if (parentParent != null) {
+                parentParent.setAlpha(0f);
+            }
+        } else {
+            if (bookNameTextView != null) {
+                bookNameTextView.setAlpha(1f);
+            }
+            if (parentParent != null) {
+                parentParent.setAlpha(1f);
+            }
         }
 
     }
