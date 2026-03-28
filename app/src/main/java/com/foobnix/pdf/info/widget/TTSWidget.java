@@ -25,10 +25,12 @@ import com.foobnix.android.utils.TxtUtils;
 import com.foobnix.dao2.FileMeta;
 import com.foobnix.model.AppData;
 import com.foobnix.model.AppProfile;
+import com.foobnix.model.AppSP;
 import com.foobnix.model.AppState;
 import com.foobnix.pdf.info.AppsConfig;
 import com.foobnix.pdf.info.IMG;
 import com.foobnix.pdf.info.R;
+import com.foobnix.tts.StealthMode;
 import com.foobnix.pdf.info.wrapper.UITab;
 import com.foobnix.sys.ImageExtractor;
 import com.foobnix.tts.TTSEngine;
@@ -90,7 +92,11 @@ public class TTSWidget extends AppWidgetProvider {
                                 for (int i = 0; i < appWidgetIds.length; i++) {
                                     int appWidgetId = appWidgetIds[i];
                                     RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.notification_tts_line);
-                                    views.setImageViewBitmap(R.id.ttsIcon, resource);
+                                    if (AppSP.get().isStealthMode()) {
+                                        views.setImageViewBitmap(R.id.ttsIcon, StealthMode.getPlaceholderCover(context));
+                                    } else {
+                                        views.setImageViewBitmap(R.id.ttsIcon, resource);
+                                    }
 
                                     views.setInt(R.id.rootView, "setBackgroundColor", Color.argb(100, 255, 255, 255));
                                     views.setViewPadding(R.id.rootView, 0, 0, 0, 0);
@@ -108,7 +114,11 @@ public class TTSWidget extends AppWidgetProvider {
                                     views.setOnClickPendingIntent(R.id.ttsPlay, playPause);
                                     views.setOnClickPendingIntent(R.id.ttsPrev, prev);
                                     views.setOnClickPendingIntent(R.id.ttsNext, next);
-                                    views.setTextViewText(R.id.bookInfo, "" + textUpdate);
+                                    if (AppSP.get().isStealthMode()) {
+                                        views.setTextViewText(R.id.bookInfo, StealthMode.getReadingLabel(context));
+                                    } else {
+                                        views.setTextViewText(R.id.bookInfo, "" + textUpdate);
+                                    }
                                     //views.setViewLayoutMargin(R.id.ttsPrev,RemoteViews.MARGIN_LEFT,0.0f,0);
 
 
